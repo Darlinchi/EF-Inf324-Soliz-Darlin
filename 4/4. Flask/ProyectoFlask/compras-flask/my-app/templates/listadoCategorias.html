@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Categorias</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Menú de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Gestión de Compras Grupales</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listadousuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/listadocategorias">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listadoproductos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listadopedidos">Pedidos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Listado de Categorias</h1>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID Categoria</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categoria in categorias %}
+                <tr>
+                    <td>{{ categoria[0] }}</td> <!-- Ajusta los índices según la estructura de tu tabla -->
+                    <td>{{ categoria[1] }}</td> <!-- Ajusta los índices según la estructura de tu tabla -->
+                    <td>
+                        <!-- Botones de acción -->
+                        <a href="/editar_categoria/{{ categoria[0] }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="/eliminar_categoria/{{ categoria[0] }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar esta categoria?');">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botón para crear un nuevo usuario -->
+        <div class="text-center mt-4">
+            <a href="/crear_categoria" class="btn btn-success">Crear Nuevo Categoria</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (para funcionalidades como el menú desplegable) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
